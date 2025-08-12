@@ -13,24 +13,24 @@ def menu():
     print("MENU")
     print("1.Agregar")
     print("2.Ordenar por nombre")
-    print("3.Salir")
+    print("3.Eliminar listado")
+    print("4.Salir")
     op = int(input("ingrese una opcion: "))
 
     match op:
         case 1:
-         while True:
-          cantidad = int(input('Ingrese la cantidad de Corredores: '))
-          for i in range(cantidad):
-           while True:
+         cantidad = int(input('Cantidad de Corredores: '))
+         for i in range(cantidad):
+          while True:
             codigo = int(input("ingrese numero de dorsal"))
             if codigo < 0:
-                print("debes agregar un número")
+                print("Agrega el numero")
             elif codigo in Corredores:
-             print("Codigo Utilizado")
+             print("ya Utilizado")
             else:
                 break
-           Corredores[codigo] = {}
-           while True:
+          Corredores[codigo] = {}
+          while True:
               try:
                   nombre = input("ingrese el nombre del corredor: ")
                   if nombre == "":
@@ -40,7 +40,7 @@ def menu():
                       break
               except ValueError:
                   print("mira el nombre")
-           while True:
+          while True:
             edad = int(input("Ingrese la edad del corredor: "))
             if edad < 0:
                 print("no puede ser negativo o no puede quedar vacio")
@@ -48,12 +48,6 @@ def menu():
                 Corredores[codigo]['edad'] = edad
                 break
             rango = input("Ingrese la rango del corredor: (Juvenil, Adulto, Master) ")
-          sino = input("desea guardar los datos? (si o no)")
-          if sino == "si":
-             break
-          else:
-              Corredores.clear()
-          print("\n ingresara de nuevo los datos")
         case 2:
          print("\n Listado")
          lista = list(Corredores.items())
@@ -62,6 +56,15 @@ def menu():
          for nombre, valor in ordenados:
              print(f"Dorsal: {nombre}, Datos{valor}")
         case 3:
+            sino = input("Desea eliminar todo el listado de corredores? (si o no)")
+            if sino == "no":
+             return menu()
+            else:
+                 sisi= input("esta seguro?(si o no)")
+                 if sisi == "si":
+                     print("\n Yo te pregunte")
+
+        case 4:
             print("Hasta que nos volvamos a ver :3 ")
             break
         case _:
